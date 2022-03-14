@@ -1,31 +1,29 @@
 import React from 'react';
 import { StatusBar, View, Text, StyleSheet, Button, LogBox, TouchableOpacity } from 'react-native'
 import VideoPlayer from 'react-native-video'
-import { OrientationLocker, PORTRAIT, LANDSCAPE } from "react-native-orientation-locker";
 import { YoutubePlayer } from 'react-native-video-extension';
-
-LogBox.ignoreLogs(["`new NativeEventEmitter()` was called with a non-null argument without the required `addListener` method.", "`new NativeEventEmitter()` was called with a non-null argument without the required `removeListeners` method."])
+import { WebView } from 'react-native-webview';
 
 const App = () => {
-  const [orientation, setOrientation] = React.useState(PORTRAIT);
-
-  function handleClick() {
-    setOrientation(prev => {
-      if (prev === LANDSCAPE) {
-        return PORTRAIT
-      } else return LANDSCAPE
-    })
-    console.log("Click")
-  }
-
   return (
     <View style={{ flex: 1, backgroundColor: "pink" }}>
-      <YoutubePlayer
+      {/* <YoutubePlayer
         mode="auto-fit"
         source={{
-          uri: 'https://mschoolstatic.mobiedu.vn/site_184/video/ok5t35rhbcwe_1641522704.mp4',
+          uri: 'https://www.youtube.com/embed/Q9GLCcJ27TA',
         }}
-      />
+        https://www.youtube.com/embed/4U_sDSLe5yQ
+      /> */}
+
+      <View style={{ aspectRatio: 16 / 9 }}>
+        <WebView
+          containerStyle={{ flex: 1 }}
+          source={{
+            uri: 'https://www.youtube.com/embed/mK9J8ByjT4U'
+          }}
+          allowsFullscreenVideo
+        />
+      </View>
     </View >
   );
 };
